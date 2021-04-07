@@ -78,17 +78,20 @@
                 setHeight = document.getElementById("height-barom"), 
                 vid = document.getElementById('recvid'); 
 
-            vid.addEventListener('loadedmetadata', function() {
-            setHeight.style.height = Math.floor(vid.duration) * playbackConst + "px";
-            });
+                vid.addEventListener('loadedmetadata', function() {
+                setHeight.style.height = Math.floor(vid.duration) * playbackConst + "px";
+                });
 
-            function scrollPlay(){  
-            var frameNumber  = window.pageYOffset/playbackConst;
-            vid.currentTime  = frameNumber;
-            window.requestAnimationFrame(scrollPlay);
-            }
+                function scrollPlay(){  
+                var frameNumber  = window.pageYOffset/playbackConst;
+                vid.currentTime  = frameNumber;
+                window.requestAnimationFrame(scrollPlay);
+                console.log(vid.currentTime)
+                }
 
-            window.requestAnimationFrame(scrollPlay);
+                window.requestAnimationFrame(scrollPlay);
+
+              
 
         </script>
     </body>
