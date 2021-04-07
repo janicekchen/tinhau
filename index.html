@@ -1,0 +1,76 @@
+<html>
+    <title>TIN HAU</title>
+    <head>
+		<meta charset="UTF-8">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+            }
+
+            #inst {
+                position: fixed;
+                top: 0;
+                z-index: 1;
+                width: 100%
+            }
+
+            #inst p {
+                font-family: 'Poppins';
+                font-size: 30px;
+                color: #2b3d3d;
+                text-align: center;
+            }
+            #height-barom {
+                display: block;
+            }
+            #vid-container {
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+            }
+
+            #recvid {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "inst">
+            <p>&#9759; scroll &#9759;</p>
+        </div>
+        <div id = "height-barom"></div>
+        <div id = "vid-container">
+            <video id = "recvid" tabindex = "0" autobuffer = "autobuffer" preload = "preload" muted = "muted">
+                <source type = "video/mp4" src="vid.mp4"></source>
+            </video>
+        </div>
+        <script type = "text/javascript">
+                var frameNum = 0, 
+                playbackConst = 500, 
+                setHeight = document.getElementById("height-barom"), 
+                vid = document.getElementById('recvid'); 
+
+            vid.addEventListener('loadedmetadata', function() {
+            setHeight.style.height = Math.floor(vid.duration) * playbackConst + "px";
+            });
+
+            function scrollPlay(){  
+            var frameNumber  = window.pageYOffset/playbackConst;
+            vid.currentTime  = frameNumber;
+            window.requestAnimationFrame(scrollPlay);
+            }
+
+            window.requestAnimationFrame(scrollPlay);
+
+        </script>
+    </body>
+</html>
