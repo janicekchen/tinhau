@@ -73,7 +73,22 @@
             </video>
         </div>
         <script type = "text/javascript">
-                var frameNum = 0, 
+                var frameNum = 0,
+                playbackConst = 500,
+                setHeight = document.getElementById("height-barom"),
+                vid = document.getElementById('recvid');
+
+            vid.addEventListener('loadedmetadata', function() {
+            setHeight.style.height = Math.floor(vid.duration) * playbackConst + "px";
+            });
+
+            vid.load();
+
+            window.addEventListener('scroll', function() {
+              var frameNumber  = window.pageYOffset/playbackConst;
+              vid.currentTime  = frameNumber;
+            })
+                /*var frameNum = 0, 
                 playbackConst = 500, 
                 setHeight = document.getElementById("height-barom"), 
                 vid = document.getElementById('recvid'); 
@@ -89,7 +104,7 @@
                 console.log(vid.currentTime)
                 }
 
-                window.requestAnimationFrame(scrollPlay);
+                window.requestAnimationFrame(scrollPlay);*/
 
               
 
